@@ -1,53 +1,53 @@
-def main():    
-    rle = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW"  
-    encoded = encode(rle)  
+def main():
+    rle = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW"
+    encoded = encode(rle)
     decoded = decode(encoded)
 
-    print('Test Vector: ' + rle)
-    print('Encoded Result: ' + encoded)  # Expected output: 12WB12W3B24WB14W
-    print('Decoded Result: ' + decoded)  # Expected output: WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW
+    print("Test Vector: " + rle)
+    print("Encoded Result: " + encoded)  # Expected output: 12WB12W3B24WB14W
+    print("Decoded Result: " + decoded)  # Expected output: WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW
 
 
-def encode(plaintext):
+def encode(sequence):
     count = 1
     result = ""
-    
-    for x in range(len(plaintext)):
+
+    for x in range(len(sequence)):
         if x == 0:
-            continue              
-        elif plaintext[x] == plaintext[x - 1]:
-            count += 1        
-        else:        
+            continue
+        elif sequence[x] == sequence[x - 1]:
+            count += 1
+        else:
             if count == 1:
-                result += plaintext[x - 1]
+                result += sequence[x - 1]
             else:
-                result += str(count) + plaintext[x - 1]
+                result += str(count) + sequence[x - 1]
             count = 1
-    
+
     if count == 1:
-        result += plaintext[len(input) - 1]
+        result += sequence[len(sequence) - 1]
     else:
-        result += str(count) + plaintext[len(plaintext) - 1]
+        result += str(count) + sequence[len(sequence) - 1]
 
     return result
 
 
-def decode(cipher):
+def decode(sequence):
     count = ""
-    plaintext = ""
+    result = ""
 
-    for x in range(len(cipher)):
-        if cipher[x].isdigit():
-            count += cipher[x]
+    for x in range(len(sequence)):
+        if sequence[x].isdigit():
+            count += sequence[x]
         else:
             if count != "":
-                plaintext += cipher[x] * int(count)
+                result += sequence[x] * int(count)
             else:
-                plaintext += cipher[x]
+                result += sequence[x]
             count = ""
 
-    return plaintext
+    return result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
