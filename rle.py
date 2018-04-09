@@ -4,11 +4,20 @@ def main():
     decoded = decode(encoded)
 
     print("Test Vector: " + rle)
-    print("Encoded Result: " + encoded)  # Expected output: 12WB12W3B24WB14W
-    print("Decoded Result: " + decoded)  # Expected output: WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW
+
+    # Expected output: 12WB12W3B24WB14W
+    print("Encoded Result: " + encoded)
+
+    # Expected output: WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW
+    print("Decoded Result: " + decoded)
 
 
 def encode(sequence):
+    """Encode a sequence of characters.
+
+    Keyword arguments:
+    sequence -- the sequence of characters to encode.
+    """
     count = 1
     result = ""
 
@@ -33,6 +42,11 @@ def encode(sequence):
 
 
 def decode(sequence):
+    """Decode a sequence of characters.
+
+       Keyword arguments:
+       sequence -- the sequence of characters to decode.
+       """
     count = ""
     result = ""
 
