@@ -1,4 +1,8 @@
+"""Run-length encoding and decoding functions."""
+
+
 def main():
+    """Demo usage of functions."""
     rle = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW"
     encoded = encode(rle)
     decoded = decode(encoded)
