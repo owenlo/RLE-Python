@@ -4,47 +4,50 @@ def main():
     decoded = decode(encoded)
 
     print('Test Vector: ' + rle)
-    print('Encoded Result: ' + encoded)  #Expected output: 12WB12W3B24WB14W
-    print('Decoded Result: ' + decoded)  #Expected output: WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW
+    print('Encoded Result: ' + encoded)  # Expected output: 12WB12W3B24WB14W
+    print('Decoded Result: ' + decoded)  # Expected output: WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW
 
-def encode(input):    
+
+def encode(plaintext):
     count = 1
     result = ""
     
-    for x in range(len(input)):
-        if (x == 0):           
+    for x in range(len(plaintext)):
+        if x == 0:
             continue              
-        elif (input[x] == input[x - 1]):
+        elif plaintext[x] == plaintext[x - 1]:
             count += 1        
         else:        
-            if(count == 1):
-                result += input[x - 1]        
+            if count == 1:
+                result += plaintext[x - 1]
             else:
-                result += str(count) + input[x - 1]        
+                result += str(count) + plaintext[x - 1]
             count = 1
     
-    if(count == 1):
-        result += input[len(input) - 1]
+    if count == 1:
+        result += plaintext[len(input) - 1]
     else:
-        result += str(count) + input[len(input) - 1]
+        result += str(count) + plaintext[len(plaintext) - 1]
 
-    return(result)
+    return result
 
-def decode(input):
+
+def decode(cipher):
     count = ""
-    result = ""
+    plaintext = ""
 
-    for x in range(len(input)):
-        if input[x].isdigit():
-            count += input[x]
+    for x in range(len(cipher)):
+        if cipher[x].isdigit():
+            count += cipher[x]
         else:
-            if(count != ""):
-                result += input[x] * int(count)
+            if count != "":
+                plaintext += cipher[x] * int(count)
             else:
-                result += input[x]
+                plaintext += cipher[x]
             count = ""
 
-    return(result)
+    return plaintext
+
 
 if __name__ == '__main__':
     main()
