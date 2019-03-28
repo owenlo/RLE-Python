@@ -23,26 +23,26 @@ def encode(sequence):
     sequence -- the sequence of characters to encode.
     """
     count = 1
-    result = ""
+    result = []
 
-    for x in range(len(sequence)):
+    for x,item in enumerate(sequence):
         if x == 0:
             continue
-        elif sequence[x] == sequence[x - 1]:
+        elif item == sequence[x - 1]:
             count += 1
         else:
             if count == 1:
-                result += sequence[x - 1]
+                result.append(sequence[x - 1])
             else:
-                result += str(count) + sequence[x - 1]
+                result.append(str(count) + sequence[x - 1])
             count = 1
 
     if count == 1:
-        result += sequence[len(sequence) - 1]
+        result.append(sequence[len(sequence) - 1])
     else:
-        result += str(count) + sequence[len(sequence) - 1]
+        result.append(str(count) + sequence[len(sequence) - 1])
 
-    return result
+    return "".join(result)
 
 
 def decode(sequence):
@@ -52,19 +52,19 @@ def decode(sequence):
        sequence -- the sequence of characters to decode.
        """
     count = ""
-    result = ""
+    result = []
 
-    for x in range(len(sequence)):
-        if sequence[x].isdigit():
-            count += sequence[x]
+    for x,item in enumerate(sequence):
+        if item.isdigit():
+            count += item
         else:
             if count != "":
-                result += sequence[x] * int(count)
+                result.append(item * int(count))
             else:
-                result += sequence[x]
+                result.append(item)
             count = ""
 
-    return result
+    return "".join(result)
 
 
 if __name__ == "__main__":
